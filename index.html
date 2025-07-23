@@ -51,7 +51,18 @@
       margin-bottom: 30px;
     }
 
-    #searchInput, #filterSelect {
+    #searchInput {
+      flex: 1;
+      min-width: 200px;
+      padding: 12px 16px 12px 40px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat 12px center;
+      background-size: 18px;
+    }
+
+    #filterSelect {
       flex: 1;
       min-width: 200px;
       padding: 12px;
@@ -85,37 +96,37 @@
     }
 
     .card-body {
-      padding: 20px;
-      text-align: center;
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 20px;
+  text-align: center;
+}
 
-    .card-body h3 {
-      margin-bottom: 10px;
-      color: #f68104;
-      font-size: 1.2rem;
-    }
+.card-body p {
+  flex-grow: 1;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
 
-    .card-body p {
-      font-size: 0.95rem;
-      color: #555;
-      line-height: 1.5;
-    }
+.card-body a {
+  align-self: center;
+  background-color: #f68104;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
+}
 
-    .card-body a {
-      display: inline-block;
-      margin-top: 12px;
-      background-color: #f68104;
-      color: white;
-      padding: 10px 18px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s;
-    }
+.card-body a:hover {
+  background-color: #c16503;
+}
 
-    .card-body a:hover {
-      background-color: #c16503;
-    }
   </style>
 </head>
 <body>
@@ -140,7 +151,7 @@
     </div>
 
     <div class="grid" id="cardContainer">
-      <!-- Blocos dos técnicos serão inseridos aqui -->
+      <!-- Blocos dos técnicos -->
     </div>
   </div>
 
@@ -194,6 +205,8 @@
     const searchInput = document.getElementById('searchInput');
     const filterSelect = document.getElementById('filterSelect');
 
+    let timeout;
+
     function renderCards(data) {
       container.innerHTML = '';
       data.forEach(t => {
@@ -210,21 +223,24 @@
       });
     }
 
-    function atualizarLista() {
-      const termo = searchInput.value.toLowerCase();
-      const filtro = filterSelect.value;
+    function atualizarListaSuave() {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        const termo = searchInput.value.toLowerCase();
+        const filtro = filterSelect.value;
 
-      const filtrado = tecnicos.filter(t => {
-        const correspondeTexto = t.nome.toLowerCase().includes(termo);
-        const correspondeCategoria = !filtro || t.categoria === filtro;
-        return correspondeTexto && correspondeCategoria;
-      });
+        const filtrado = tecnicos.filter(t => {
+          const correspondeTexto = t.nome.toLowerCase().includes(termo);
+          const correspondeCategoria = !filtro || t.categoria === filtro;
+          return correspondeTexto && correspondeCategoria;
+        });
 
-      renderCards(filtrado);
+        renderCards(filtrado);
+      }, 300); // delay de 300ms
     }
 
-    searchInput.addEventListener('input', atualizarLista);
-    filterSelect.addEventListener('change', atualizarLista);
+    searchInput.addEventListener('input', atualizarListaSuave);
+    filterSelect.addEventListener('change', atualizarListaSuave);
 
     renderCards(tecnicos);
   </script>
