@@ -9,7 +9,7 @@
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #fff8f1;
+      background-color: #ffffff;
       color: #2d2d2d;
     }
 
@@ -19,26 +19,8 @@
       padding: 40px 20px;
     }
 
-    .back-btn {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background-color: #f68104;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: background 0.3s;
-    }
-
-    .back-btn:hover {
-      background-color: #c16503;
-    }
-
     h1 {
-      font-size: 3.2rem;
+      font-size: 3rem;
       text-align: center;
       color: #f68104;
       margin-bottom: 10px;
@@ -52,31 +34,30 @@
     }
 
     .intro {
-      background-color: #ffe1c3;
+      background-color: #fff4e6;
       padding: 24px;
-      border-radius: 14px;
+      border-radius: 12px;
       font-size: 1.05rem;
-      line-height: 1.7;
-      margin-bottom: 50px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-    }
-
-    .divider {
-      height: 4px;
-      background-color: #f68104;
-      width: 120px;
-      margin: 40px auto;
-      border-radius: 4px;
-    }
-
-    #searchInput {
-      width: 100%;
-      padding: 14px 16px;
-      font-size: 1rem;
+      line-height: 1.6;
       margin-bottom: 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    #searchInput, #filterSelect {
+      flex: 1;
+      min-width: 200px;
+      padding: 12px;
+      font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 10px;
-      box-shadow: inset 0 1px 4px rgba(0,0,0,0.05);
     }
 
     .grid {
@@ -87,15 +68,14 @@
 
     .card {
       background-color: #fff;
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s;
     }
 
     .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+      transform: translateY(-5px);
     }
 
     .card img {
@@ -112,7 +92,13 @@
     .card-body h3 {
       margin-bottom: 10px;
       color: #f68104;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
+    }
+
+    .card-body p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.5;
     }
 
     .card-body a {
@@ -130,33 +116,28 @@
     .card-body a:hover {
       background-color: #c16503;
     }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-
-      .subtitle {
-        font-size: 1rem;
-      }
-    }
   </style>
 </head>
 <body>
-
-  <a class="back-btn" href="https://uplifeeducacional.com.br">← Voltar</a>
 
   <div class="container">
     <h1>Técnicos por Competência</h1>
     <p class="subtitle">Diplome-se com agilidade, valorizando sua experiência profissional.</p>
 
     <div class="intro">
-      Os cursos técnicos por competência são destinados a quem já possui vivência prática em determinada área e deseja conquistar o diploma técnico de forma acelerada. Através da análise e validação das suas habilidades adquiridas no mercado, você pode obter a certificação profissional que faltava para alavancar sua carreira.
+      Os cursos técnicos por competência são ideais para quem já atua na área e deseja obter a certificação técnica de forma mais rápida e prática, aproveitando as habilidades adquiridas no mercado de trabalho.
     </div>
 
-    <div class="divider"></div>
-
-    <input type="text" id="searchInput" placeholder="Pesquisar por técnico...">
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Pesquisar por nome...">
+      <select id="filterSelect">
+        <option value="">Todas as áreas</option>
+        <option value="Indústria">Indústria</option>
+        <option value="Construção">Construção</option>
+        <option value="Segurança">Segurança</option>
+        <option value="Qualidade">Qualidade</option>
+      </select>
+    </div>
 
     <div class="grid" id="cardContainer">
       <!-- Blocos dos técnicos serão inseridos aqui -->
@@ -165,16 +146,53 @@
 
   <script>
     const tecnicos = [
-      { nome: "Técnico em Mecânica", img: "mecanica.jpeg" },
-      { nome: "Técnico em Edificações", img: "edificacoes.jpeg" },
-      { nome: "Técnico em Eletrotécnica", img: "eletrotecnica.jpeg" },
-      { nome: "Técnico em Automação Industrial", img: "automacaoindustrial.jpeg" },
-      { nome: "Técnico em Segurança do Trabalho", img: "seguranca.jpeg" },
-      { nome: "Técnico em Eletromecânica", img: "eletromecanica.jpeg" },
-      { nome: "Técnico em Qualidade", img: "https://i.pinimg.com/736x/b5/63/70/b56370453e9f3e8673b9b47456638cc6.jpg" }
+      {
+        nome: "Técnico em Mecânica",
+        img: "mecanica.jpeg",
+        descricao: "Formação voltada para atuação com máquinas, manutenção industrial e processos mecânicos.",
+        categoria: "Indústria"
+      },
+      {
+        nome: "Técnico em Edificações",
+        img: "edificacoes.jpeg",
+        descricao: "Ideal para quem atua na construção civil, com foco em projetos, obras e fiscalização.",
+        categoria: "Construção"
+      },
+      {
+        nome: "Técnico em Eletrotécnica",
+        img: "eletrotecnica.jpeg",
+        descricao: "Voltado para profissionais da área elétrica, instalações industriais e sistemas de potência.",
+        categoria: "Indústria"
+      },
+      {
+        nome: "Técnico em Automação Industrial",
+        img: "automacaoindustrial.jpeg",
+        descricao: "Para quem atua com sistemas automatizados, sensores, CLPs e processos industriais.",
+        categoria: "Indústria"
+      },
+      {
+        nome: "Técnico em Segurança do Trabalho",
+        img: "seguranca.jpeg",
+        descricao: "Formação técnica para garantir saúde e segurança no ambiente profissional.",
+        categoria: "Segurança"
+      },
+      {
+        nome: "Técnico em Eletromecânica",
+        img: "eletromecanica.jpeg",
+        descricao: "Combina elétrica e mecânica industrial, ideal para manutenção e operação de sistemas.",
+        categoria: "Indústria"
+      },
+      {
+        nome: "Técnico em Qualidade",
+        img: "https://i.pinimg.com/736x/b5/63/70/b56370453e9f3e8673b9b47456638cc6.jpg",
+        descricao: "Focado em processos de controle e garantia da qualidade nas organizações.",
+        categoria: "Qualidade"
+      }
     ];
 
     const container = document.getElementById('cardContainer');
+    const searchInput = document.getElementById('searchInput');
+    const filterSelect = document.getElementById('filterSelect');
 
     function renderCards(data) {
       container.innerHTML = '';
@@ -184,6 +202,7 @@
             <img src="${t.img}" alt="${t.nome}">
             <div class="card-body">
               <h3>${t.nome}</h3>
+              <p>${t.descricao}</p>
               <a target="_blank" href="https://wa.me/554198505518?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20técnico%20por%20competência%20em%20${encodeURIComponent(t.nome)}.">Saiba mais</a>
             </div>
           </div>
@@ -191,13 +210,23 @@
       });
     }
 
-    renderCards(tecnicos);
+    function atualizarLista() {
+      const termo = searchInput.value.toLowerCase();
+      const filtro = filterSelect.value;
 
-    document.getElementById('searchInput').addEventListener('input', function () {
-      const valor = this.value.toLowerCase();
-      const filtrado = tecnicos.filter(t => t.nome.toLowerCase().includes(valor));
+      const filtrado = tecnicos.filter(t => {
+        const correspondeTexto = t.nome.toLowerCase().includes(termo);
+        const correspondeCategoria = !filtro || t.categoria === filtro;
+        return correspondeTexto && correspondeCategoria;
+      });
+
       renderCards(filtrado);
-    });
+    }
+
+    searchInput.addEventListener('input', atualizarLista);
+    filterSelect.addEventListener('change', atualizarLista);
+
+    renderCards(tecnicos);
   </script>
 </body>
 </html>
