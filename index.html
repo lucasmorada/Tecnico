@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Técnicos por Competência - Up Life Educacional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
+      font-family: 'Inter', sans-serif;
+      background-color: #fff8f1;
+      color: #2d2d2d;
     }
 
     .container {
@@ -18,56 +19,83 @@
       padding: 40px 20px;
     }
 
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: #f68104;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: background 0.3s;
+    }
+
+    .back-btn:hover {
+      background-color: #c16503;
+    }
+
     h1 {
-      font-size: 4rem;
+      font-size: 3.2rem;
       text-align: center;
-      color: #fc6d00;
-      margin-bottom: 20px;
+      color: #f68104;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 30px;
     }
 
     .intro {
-      background-color: #ffb061;
-      padding: 20px;
-      border-radius: 12px;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 40px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background-color: #ffe1c3;
+      padding: 24px;
+      border-radius: 14px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 50px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
     }
 
     .divider {
       height: 4px;
-      background-color: #ff7b00;
-      width: 500px;
+      background-color: #f68104;
+      width: 120px;
       margin: 40px auto;
-      border-radius: 2px;
+      border-radius: 4px;
     }
 
     #searchInput {
       width: 100%;
-      padding: 12px;
+      padding: 14px 16px;
       font-size: 1rem;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
       border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 10px;
+      box-shadow: inset 0 1px 4px rgba(0,0,0,0.05);
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
     }
 
     .card {
-      background-color: white;
-      border-radius: 12px;
+      background-color: #fff;
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      transition: transform 0.3s;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.12);
     }
 
     .card img {
@@ -83,31 +111,47 @@
 
     .card-body h3 {
       margin-bottom: 10px;
-      color: #f96604;
+      color: #f68104;
+      font-size: 1.3rem;
     }
 
     .card-body a {
       display: inline-block;
-      margin-top: 10px;
+      margin-top: 12px;
       background-color: #f68104;
       color: white;
-      padding: 10px 16px;
-      border-radius: 8px;
+      padding: 10px 18px;
+      border-radius: 10px;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
       transition: background 0.3s;
     }
 
     .card-body a:hover {
       background-color: #c16503;
     }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <a class="back-btn" href="https://uplifeeducacional.com.br">← Voltar</a>
+
   <div class="container">
     <h1>Técnicos por Competência</h1>
+    <p class="subtitle">Diplome-se com agilidade, valorizando sua experiência profissional.</p>
+
     <div class="intro">
-      Os cursos técnicos por competência são voltados para quem já possui experiência prática na área e deseja obter seu diploma de forma mais rápida. Através da validação de competências adquiridas no mercado de trabalho, é possível conquistar o certificado técnico com foco direto no que realmente importa. Confira abaixo os cursos disponíveis!
+      Os cursos técnicos por competência são destinados a quem já possui vivência prática em determinada área e deseja conquistar o diploma técnico de forma acelerada. Através da análise e validação das suas habilidades adquiridas no mercado, você pode obter a certificação profissional que faltava para alavancar sua carreira.
     </div>
 
     <div class="divider"></div>
@@ -115,7 +159,7 @@
     <input type="text" id="searchInput" placeholder="Pesquisar por técnico...">
 
     <div class="grid" id="cardContainer">
-      <!-- Blocos dos técnicos -->
+      <!-- Blocos dos técnicos serão inseridos aqui -->
     </div>
   </div>
 
