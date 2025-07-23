@@ -78,12 +78,15 @@
     }
 
     .card {
-      background-color: #fff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-      transition: transform 0.3s;
-    }
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* permite que o card cresça uniformemente */
+}
 
     .card:hover {
       transform: translateY(-5px);
@@ -98,8 +101,7 @@
     .card-body {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+  flex: 1;
   padding: 20px;
   text-align: center;
 }
