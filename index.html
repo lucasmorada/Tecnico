@@ -39,8 +39,15 @@
       border-radius: 12px;
       font-size: 1.05rem;
       line-height: 1.6;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    #contadorTecnicos {
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
     }
 
     .filters {
@@ -78,15 +85,15 @@
     }
 
     .card {
-  background-color: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-  transition: transform 0.3s;
-  display: flex;
-  flex-direction: column;
-  height: 100%; /* permite que o card cresça uniformemente */
-}
+      background-color: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
 
     .card:hover {
       transform: translateY(-5px);
@@ -99,36 +106,35 @@
     }
 
     .card-body {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 20px;
-  text-align: center;
-}
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: 20px;
+      text-align: center;
+    }
 
-.card-body p {
-  flex-grow: 1;
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.5;
-  margin-bottom: 16px;
-}
+    .card-body p {
+      flex-grow: 1;
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
 
-.card-body a {
-  align-self: center;
-  background-color: #f68104;
-  color: white;
-  padding: 10px 18px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s;
-}
+    .card-body a {
+      align-self: center;
+      background-color: #f68104;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
 
-.card-body a:hover {
-  background-color: #c16503;
-}
-
+    .card-body a:hover {
+      background-color: #c16503;
+    }
   </style>
 </head>
 <body>
@@ -140,6 +146,8 @@
     <div class="intro">
       Os cursos técnicos por competência são ideais para quem já atua na área e deseja obter a certificação técnica de forma mais rápida e prática, aproveitando as habilidades adquiridas no mercado de trabalho.
     </div>
+
+    <p id="contadorTecnicos">Mostrando 7 técnicos</p>
 
     <div class="filters">
       <input type="text" id="searchInput" placeholder="Pesquisar por nome...">
@@ -153,7 +161,7 @@
     </div>
 
     <div class="grid" id="cardContainer">
-      <!-- Blocos dos técnicos -->
+      <!-- Cards vão aqui -->
     </div>
   </div>
 
@@ -206,34 +214,38 @@
     const container = document.getElementById('cardContainer');
     const searchInput = document.getElementById('searchInput');
     const filterSelect = document.getElementById('filterSelect');
+    const contadorEl = document.getElementById('contadorTecnicos');
 
     let timeout;
 
     function renderCards(data) {
-    container.innerHTML = '';
+      container.innerHTML = '';
 
-    if (data.length === 0) {
-    container.innerHTML = `
-      <div style="text-align:center; padding: 2rem; font-size: 1.2rem; color: #777;">
-        ❌ Não encontramos resultados para a sua pesquisa.
-      </div>
-    `;
-    return;
-  }
+      if (data.length === 0) {
+        container.innerHTML = `
+          <div style="text-align:center; padding: 2rem; font-size: 1.2rem; color: #777;">
+            ❌ Não encontramos resultados para a sua pesquisa.
+          </div>
+        `;
+        contadorEl.textContent = `Nenhum técnico encontrado`;
+        return;
+      }
 
-  data.forEach(t => {
-    container.innerHTML += `
-      <div class="card">
-        <img src="${t.img}" alt="${t.nome}">
-        <div class="card-body">
-          <h3>${t.nome}</h3>
-          <p>${t.descricao}</p>
-          <a target="_blank" href="https://wa.me/554198505518?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20técnico%20por%20competência%20em%20${encodeURIComponent(t.nome)}.">Saiba mais</a>
-        </div>
-      </div>
-    `;
-  });
-}
+      contadorEl.textContent = `Mostrando ${data.length} técnico${data.length > 1 ? 's' : ''}`;
+
+      data.forEach(t => {
+        container.innerHTML += `
+          <div class="card">
+            <img src="${t.img}" alt="${t.nome}">
+            <div class="card-body">
+              <h3>${t.nome}</h3>
+              <p>${t.descricao}</p>
+              <a target="_blank" href="https://wa.me/554198505518?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20técnico%20por%20competência%20em%20${encodeURIComponent(t.nome)}.">Saiba mais</a>
+            </div>
+          </div>
+        `;
+      });
+    }
 
     function atualizarListaSuave() {
       clearTimeout(timeout);
@@ -242,13 +254,25 @@
         const filtro = filterSelect.value;
 
         const filtrado = tecnicos.filter(t => {
-          const correspondeTexto = t.nome.toLowerCase().includes(termo);
-          const correspondeCategoria = !filtro || t.categoria === filtro;
+          const normalizar = str => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+          const termoNormalizado = normalizar(termo);
+          const nome = normalizar(t.nome);
+          const descricao = normalizar(t.descricao);
+          const categoria = normalizar(t.categoria);
+          const filtroNormalizado = normalizar(filtro);
+
+          const correspondeTexto =
+            nome.includes(termoNormalizado) ||
+            descricao.includes(termoNormalizado) ||
+            categoria.includes(termoNormalizado);
+
+          const correspondeCategoria = !filtro || categoria === filtroNormalizado;
+
           return correspondeTexto && correspondeCategoria;
         });
 
         renderCards(filtrado);
-      }, 300); // delay de 300ms
+      }, 300);
     }
 
     searchInput.addEventListener('input', atualizarListaSuave);
