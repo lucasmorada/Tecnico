@@ -229,15 +229,34 @@
       container.innerHTML = '';
 
       if (data.length === 0) {
-        container.innerHTML = `
-          <div style="grid-column: 1 / -1; text-align:center; padding: 2rem; font-size: 1.2rem; color: #777;">
-            ❌ Não encontramos resultados para a sua pesquisa.
-          </div>
-        `;
-        contadorEl.style.display = exibirContador ? 'block' : 'none';
-        contadorEl.textContent = `Nenhum técnico encontrado`;
-        return;
-      }
+  container.innerHTML = `
+    <div style="grid-column: 1 / -1; text-align:center; padding: 2rem;">
+      <a
+        href="https://wa.me/554198505518?text=Olá!%20Não%20encontrei%20o%20técnico%20que%20procuro.%20Poderia%20me%20ajudar%3F"
+        target="_blank"
+        style="
+          display: inline-block;
+          padding: 12px 20px;
+          background-color: #f68104;
+          color: white;
+          border-radius: 10px;
+          font-weight: 600;
+          text-decoration: none;
+          font-size: 1.1rem;
+          transition: background-color 0.3s ease;
+        "
+        onmouseover="this.style.backgroundColor='#c16503'"
+        onmouseout="this.style.backgroundColor='#f68104'"
+      >
+        Não encontrou o que procurava? Clique aqui.
+      </a>
+    </div>
+  `;
+  contadorEl.style.display = exibirContador ? 'block' : 'none';
+  contadorEl.textContent = `Nenhum técnico encontrado`;
+  return;
+}
+
 
       data.forEach(t => {
         container.innerHTML += `
