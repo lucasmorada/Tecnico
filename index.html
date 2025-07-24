@@ -3,167 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Técnicos por Competência - Up Life Educacional</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <title>Técnicos por Competência</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #ffffff;
-      color: #2d2d2d;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f7f7f7;
     }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    h1 {
-      font-size: 3rem;
-      text-align: center;
-      color: #f68104;
+    input, select {
+      padding: 10px;
       margin-bottom: 10px;
+      width: 250px;
     }
-
-    .subtitle {
-      text-align: center;
-      font-size: 1.2rem;
-      color: #555;
-      margin-bottom: 30px;
-    }
-
-    .intro {
-      background-color: #fff4e6;
-      padding: 24px;
-      border-radius: 12px;
-      font-size: 1.05rem;
-      line-height: 1.6;
+    #resultadoContagem {
       margin-bottom: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      font-weight: bold;
     }
-
-    #contadorTecnicos {
-      text-align: center;
-      font-weight: 600;
-      margin-bottom: 30px;
-      font-size: 1.1rem;
-    }
-
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-
-    #searchInput {
-      flex: 1;
-      min-width: 200px;
-      padding: 12px 16px 12px 40px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      background: url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat 12px center;
-      background-size: 18px;
-    }
-
-    #filterSelect {
-      flex: 1;
-      min-width: 200px;
-      padding: 12px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-    }
-
     .card {
-      background-color: #fff;
-      border-radius: 12px;
+      width: 300px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin: 10px;
       overflow: hidden;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-      transition: transform 0.3s;
       display: flex;
       flex-direction: column;
-      height: 100%;
     }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
     .card img {
       width: 100%;
-      height: 180px;
+      height: 200px;
       object-fit: cover;
     }
-
     .card-body {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .card-body p {
+      padding: 15px;
       flex-grow: 1;
-      font-size: 0.95rem;
-      color: #555;
-      line-height: 1.5;
-      margin-bottom: 16px;
     }
-
-    .card-body a {
-      align-self: center;
-      background-color: #f68104;
-      color: white;
-      padding: 10px 18px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s;
+    .card-body h3 {
+      margin-top: 0;
     }
-
-    .card-body a:hover {
-      background-color: #c16503;
+    #cardContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .nao-encontrado {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 30px;
+      font-weight: bold;
+      color: #666;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Técnicos por Competência</h1>
-    <p class="subtitle">Diplome-se com agilidade, valorizando sua experiência profissional.</p>
+  <h2>Pesquisar por nome:</h2>
+  <input type="text" id="searchInput" placeholder="Digite o nome do técnico..." />
+  <select id="filterSelect">
+    <option value="">Todas as áreas</option>
+    <option value="Indústria">Indústria</option>
+    <option value="Construção">Construção</option>
+    <option value="Segurança">Segurança</option>
+    <option value="Qualidade">Qualidade</option>
+  </select>
 
-    <div class="intro">
-      Os cursos técnicos por competência são ideais para quem já atua na área e deseja obter a certificação técnica de forma mais rápida e prática, aproveitando as habilidades adquiridas no mercado de trabalho.
-    </div>
-
-    <p id="contadorTecnicos">Mostrando 7 técnicos</p>
-
-    <div class="filters">
-      <input type="text" id="searchInput" placeholder="Pesquisar por nome...">
-      <select id="filterSelect">
-        <option value="">Todas as áreas</option>
-        <option value="Indústria">Indústria</option>
-        <option value="Construção">Construção</option>
-        <option value="Segurança">Segurança</option>
-        <option value="Qualidade">Qualidade</option>
-      </select>
-    </div>
-
-    <div class="grid" id="cardContainer">
-      <!-- Cards vão aqui -->
-    </div>
-  </div>
+  <div id="resultadoContagem"></div>
+  <div id="cardContainer"></div>
 
   <script>
     const tecnicos = [
@@ -214,24 +119,27 @@
     const container = document.getElementById('cardContainer');
     const searchInput = document.getElementById('searchInput');
     const filterSelect = document.getElementById('filterSelect');
-    const contadorEl = document.getElementById('contadorTecnicos');
-
+    const resultadoContagem = document.getElementById('resultadoContagem');
     let timeout;
 
-    function renderCards(data) {
+    function renderCards(data, mostrarContagem = false) {
       container.innerHTML = '';
+      resultadoContagem.innerHTML = '';
 
-      if (data.length === 0) {
-        container.innerHTML = `
-          <div style="text-align:center; padding: 2rem; font-size: 1.2rem; color: #777;">
-            ❌ Não encontramos resultados para a sua pesquisa.
-          </div>
-        `;
-        contadorEl.textContent = `Nenhum técnico encontrado`;
-        return;
+      if (mostrarContagem) {
+        if (data.length === 0) {
+          resultadoContagem.textContent = 'Nenhum resultado encontrado.';
+        } else if (data.length === 1) {
+          resultadoContagem.textContent = '1 resultado encontrado.';
+        } else {
+          resultadoContagem.textContent = `${data.length} resultados encontrados.`;
+        }
       }
 
-      contadorEl.textContent = `Mostrando ${data.length} técnico${data.length > 1 ? 's' : ''}`;
+      if (data.length === 0) {
+        container.innerHTML = '<div class="nao-encontrado">Não encontramos nenhum técnico com esse nome ou categoria.</div>';
+        return;
+      }
 
       data.forEach(t => {
         container.innerHTML += `
@@ -250,34 +158,24 @@
     function atualizarListaSuave() {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
-        const termo = searchInput.value.toLowerCase();
+        const termo = searchInput.value.trim().toLowerCase();
         const filtro = filterSelect.value;
 
         const filtrado = tecnicos.filter(t => {
-          const normalizar = str => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-          const termoNormalizado = normalizar(termo);
-          const nome = normalizar(t.nome);
-          const descricao = normalizar(t.descricao);
-          const categoria = normalizar(t.categoria);
-          const filtroNormalizado = normalizar(filtro);
-
-          const correspondeTexto =
-            nome.includes(termoNormalizado) ||
-            descricao.includes(termoNormalizado) ||
-            categoria.includes(termoNormalizado);
-
-          const correspondeCategoria = !filtro || categoria === filtroNormalizado;
-
+          const correspondeTexto = t.nome.toLowerCase().includes(termo);
+          const correspondeCategoria = !filtro || t.categoria === filtro;
           return correspondeTexto && correspondeCategoria;
         });
 
-        renderCards(filtrado);
+        const mostrarContagem = termo !== '' || filtro !== '';
+        renderCards(filtrado, mostrarContagem);
       }, 300);
     }
 
     searchInput.addEventListener('input', atualizarListaSuave);
     filterSelect.addEventListener('change', atualizarListaSuave);
 
+    // Exibe todos inicialmente sem contagem
     renderCards(tecnicos);
   </script>
 </body>
