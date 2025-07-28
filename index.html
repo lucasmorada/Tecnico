@@ -34,53 +34,51 @@
     }
 
     .intro {
-  position: relative;
-  background: linear-gradient(135deg, #fff4e6, #ffe3cb);
-  padding: 24px 32px;
-  border-radius: 16px;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 24px;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.1);
-  overflow: hidden;
-  color: #4a2e00;
-  font-weight: 500;
-  border: 1px solid #fcd9b6;
-}
+      position: relative;
+      background: linear-gradient(135deg, #fff4e6, #ffe3cb);
+      padding: 24px 32px;
+      border-radius: 16px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+      overflow: hidden;
+      color: #4a2e00;
+      font-weight: 500;
+      border: 1px solid #fcd9b6;
+    }
 
-/* Luz animada mais visível */
-.intro::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.2) 0%,
-    rgba(255, 255, 255, 0) 50%,
-    rgba(255, 255, 255, 0.2) 100%
-  );
-  animation: shine 4s linear infinite;
-  z-index: 0;
-  pointer-events: none;
-}
+    .intro::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+       120deg,
+         rgba(255, 255, 255, 0.2) 0%,
+         rgba(255, 255, 255, 0) 50%,
+         rgba(255, 255, 255, 0.2) 100%
+    );
+      animation: shine 4s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-/* Garante que o texto fique acima do brilho */
-.intro > * {
-  position: relative;
-  z-index: 1;
-}
+    .intro > * {
+      position: relative;
+      z-index: 1;
+    }
 
-@keyframes shine {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
+    @keyframes shine {
+     0% {
+      transform: translateX(-100%);
+     }
+     100% {
+     transform: translateX(100%);
+     }
+    }
 
 
     #contadorTecnicos {
@@ -216,7 +214,7 @@
     const tecnicos = [
       {
         nome: "Técnico em Mecânica",
-        img: "https://i.pinimg.com/736x/01/50/40/015040a39ce047c279d41bb52a451d9f.jpg",
+        img: "blob:https://br.pinterest.com/2312ca87-3570-4c26-a440-85498002eee5",
         descricao: "Formação voltada para atuação com máquinas, manutenção industrial e processos mecânicos.",
         categoria: "Indústria"
       },
