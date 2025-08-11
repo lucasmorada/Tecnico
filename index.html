@@ -25,6 +25,7 @@ body {
 
 h1 {
   font-size: 3rem;
+  font-weight: 700;
   text-align: center;
   color: #f68104;
   margin-bottom: 10px;
@@ -144,7 +145,7 @@ h1 {
 
 .card img {
   width: 100%;
-  height: 200px;
+  height: 250px;
   object-fit: cover;
 }
 
@@ -201,9 +202,10 @@ h1 {
       <select id="filterSelect">
         <option value="">Todas as áreas</option>
         <option value="Indústria">Indústria</option>
-        <option value="Construção">Construção</option>
-        <option value="Segurança">Segurança</option>
         <option value="Qualidade">Qualidade</option>
+		<option value="Tecnologia e Manutenção">Tecnologia e Manutenção</option>
+		<option value="Gestão e Negócios">Gestão e Negócios</option>
+		<option value="Meio Ambiente e Segurança">Meio Ambiente e Segurança</option>
       </select>
     </div>
 
@@ -215,50 +217,97 @@ h1 {
 
   <script>
     const tecnicos = [
-      {
-        nome: "Técnico em Mecânica",
-        img: "https://i.pinimg.com/736x/67/ca/0e/67ca0e9af2a71b5199223bb6f3c4ae97.jpg",
-        descricao: "Formação voltada para atuação com máquinas, manutenção industrial e processos mecânicos.",
-        categoria: "Indústria"
-      },
-      {
-        nome: "Técnico em Edificações",
-        img: "edificacoes.jpeg",
-        descricao: "Ideal para quem atua na construção civil, com foco em projetos, obras e fiscalização.",
-        categoria: "Construção"
-      },
-      {
-        nome: "Técnico em Eletrotécnica",
-        img: "eletrotecnica.jpeg",
-        descricao: "Voltado para profissionais da área elétrica, instalações industriais e sistemas de potência.",
-        categoria: "Indústria"
-      },
-      {
-        nome: "Técnico em Automação Industrial",
-        img: "automacaoindustrial.jpeg",
-        descricao: "Para quem atua com sistemas automatizados, sensores, CLPs e processos industriais.",
-        categoria: "Indústria"
-      },
-      {
-        nome: "Técnico em Segurança do Trabalho",
-        img: "seguranca.jpeg",
-        descricao: "Formação técnica para garantir saúde e segurança no ambiente profissional.",
-        categoria: "Segurança"
-      },
-      {
-        nome: "Técnico em Eletromecânica",
-        img: "eletromecanica.jpeg",
-        descricao: "Combina elétrica e mecânica industrial, ideal para manutenção e operação de sistemas.",
-        categoria: "Indústria"
-      },
-      {
-        nome: "Técnico em Qualidade",
-        img: "https://i.pinimg.com/736x/b5/63/70/b56370453e9f3e8673b9b47456638cc6.jpg",
-        descricao: "Focado em processos de controle e garantia da qualidade nas organizações.",
-        categoria: "Qualidade"
-      }
-    ];
-
+  {
+    nome: "Técnico em Mecânica",
+    img: "https://i.pinimg.com/736x/10/c7/93/10c7931456e8161c088402c2da919444.jpg",
+    descricao: "Formação voltada para atuação com máquinas, manutenção industrial e processos mecânicos.",
+    categoria: "Indústria"
+  },
+  {
+    nome: "Técnico em Edificações",
+    img: "https://i.pinimg.com/736x/2c/03/45/2c034569222ee9741399612036e6576f.jpg",
+    descricao: "Ideal para quem atua na construção civil, com foco em projetos, obras e fiscalização.",
+    categoria: "Indústria"
+  },
+  {
+    nome: "Técnico em Eletrotécnica",
+    img: "https://i.pinimg.com/736x/24/7a/b8/247ab8778cc5703c8609a09e3edfd30f.jpg",
+    descricao: "Voltado para profissionais da área elétrica, instalações industriais e sistemas de potência.",
+    categoria: "Indústria"
+  },
+  {
+    nome: "Técnico em Automação Industrial",
+    img: "https://i.pinimg.com/736x/59/56/2d/59562d12762f1a6867b1f6d49bc42ec3.jpg",
+    descricao: "Para quem atua com sistemas automatizados, sensores, CLPs e processos industriais.",
+    categoria: "Indústria"
+  },
+  {
+    nome: "Técnico em Eletromecânica",
+    img: "https://i.pinimg.com/736x/f1/f1/d6/f1f1d6715ddfd582b0057766c1ba8631.jpg",
+    descricao: "Combina elétrica e mecânica industrial, ideal para manutenção e operação de sistemas.",
+    categoria: "Indústria"
+  },
+  {
+    nome: "Técnico em Qualidade",
+    img: "https://i.pinimg.com/736x/cc/11/28/cc11285c7afa313e6876eab775fe0566.jpg", 
+    descricao: "Focado em processos de controle e garantia da qualidade nas organizações.",
+    categoria: "Qualidade"
+  },
+  {
+    nome: "Técnico em Manutenção Automotiva",
+    img: "https://i.pinimg.com/736x/c7/c2/64/c7c264a7a19e8a5eab3d6c780ef38fe7.jpg",
+    descricao: "Responsável pela manutenção preventiva e corretiva de veículos automotores, garantindo seu pleno funcionamento.",
+    categoria: "Tecnologia e Manutenção"
+  },
+  {
+    nome: "Técnico em Administração",
+    img: "https://i.pinimg.com/736x/f4/ef/b8/f4efb8f9ed0fc613b683ccc5090c65a3.jpg",
+    descricao: "Atua nos processos administrativos, financeiros e de recursos humanos de empresas públicas e privadas.",
+    categoria: "Gestão e Negócios"
+  },
+  {
+    nome: "Técnico em Meio Ambiente",
+    img: "https://i.pinimg.com/736x/ab/c8/a4/abc8a4e20ec3e7057ed4d78b1184e34d.jpg",
+    descricao: "Trabalha com análise e controle de impactos ambientais, promovendo ações sustentáveis.",
+    categoria: "Meio Ambiente e Segurança"
+  },
+  {
+    nome: "Técnico em Metalurgia",
+    img: "https://i.pinimg.com/736x/cc/45/7c/cc457c68750082cf469ff311adef2ae6.jpg",
+    descricao: "Opera processos de transformação e tratamento de metais, garantindo sua qualidade e resistência.",
+    categoria: "Indústria"
+  },
+  {
+    nome: "Técnico em Refrigeração",
+    img: "https://i.pinimg.com/736x/fd/f6/4a/fdf64a2e77d38ad4f3a621882115c65b.jpg",
+    descricao: "Especializado na instalação, manutenção e reparo de sistemas de refrigeração e ar-condicionado.",
+    categoria: "Tecnologia e Manutenção"
+  },
+  {
+    nome: "Técnico em Logística",
+    img: "https://i.pinimg.com/736x/cf/c1/2d/cfc12d2039653034f71e4f748b390280.jpg",
+    descricao: "Gerencia cadeias de suprimentos, armazenamento e distribuição de mercadorias.",
+    categoria: "Gestão e Negócios"
+  },
+  {
+    nome: "Técnico em Mecatrônica",
+    img: "https://i.pinimg.com/736x/b6/bb/e8/b6bbe87a79523231cd291cff71603b33.jpg",
+    descricao: "Integra conhecimentos de mecânica, eletrônica e informática para automação de processos industriais.",
+    categoria: "Tecnologia e Manutenção"
+  },
+  {
+    nome: "Técnico em Petróleo e Gás",
+    img: "https://i.pinimg.com/736x/73/63/a6/7363a6d3dfd50d4bd45b4062c532f3f9.jpg",
+    descricao: "Atua na exploração, produção e refino de petróleo e gás natural, seguindo normas de segurança e meio ambiente.",
+    categoria: "Indústria"
+  },
+  {
+    nome: "Técnico em Segurança do Trabalho",
+    img: "https://i.pinimg.com/736x/eb/d9/0f/ebd90f06b1f8f4a3f03bea94040987b0.jpg",
+    descricao: "Trabalha na prevenção de acidentes e promoção da saúde no ambiente de trabalho.",
+    categoria: "Meio Ambiente e Segurança"
+  }
+];
     const container = document.getElementById('cardContainer');
     const searchInput = document.getElementById('searchInput');
     const filterSelect = document.getElementById('filterSelect');
