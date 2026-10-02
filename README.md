@@ -1,4 +1,4 @@
-Up Life Technician Directory
+# Up Life Technician Directory
 
 A simple technician directory developed as a complementary feature for the Up Life Educacional website.
 
